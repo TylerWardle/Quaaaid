@@ -14,7 +14,7 @@ module.exports = (options) => ({
   module: {
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: /node_modules/,
       query: options.babelQuery,
     }, {
@@ -23,9 +23,12 @@ module.exports = (options) => ({
       // Since we require these CSS files in our JS or CSS files,
       // they will be a part of our compilation either way.
       // So, no need for ExtractTextPlugin here.
-      test: /\.css$/,
-      include: /node_modules/,
-      loaders: ['style-loader', 'css-loader'],
+
+      // test: /\.css$/,
+      // include: /node_modules/,
+      // loaders: ['style-loader', 'css-loader'],
+      test: /(\.css|\.scss)$/,
+      loader: 'style-loader!css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader?sourceMap',
     }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
@@ -77,4 +80,7 @@ module.exports = (options) => ({
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
+  node: {
+    fs: 'empty',
+  },
 });
