@@ -10,11 +10,13 @@
  */
 
 import React from 'react';
-// import { Button } from 'react-toolbox/lib/button';
+import { Container, Col } from 'react-grid-system';
 import AppBar from 'react-toolbox/lib/app_bar';
+import { Card, CardTitle } from 'react-toolbox/lib/card';
 import Navigation from 'react-toolbox/lib/navigation';
 import Link from 'react-toolbox/lib/link';
 import theme from './styles.scss';
+
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -25,12 +27,21 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       </svg>
     );
     const AppBarTest = () => (
-      <AppBar title="Quaaaid" leftIcon="M" theme={theme} rightIcon={<GithubIcon />}>
-        <Navigation type="horizontal">
-          <Link href="http://" label="Inbox" icon="I" >{''}</Link>
-          <Link href="http://" active label="Profile" icon="P" >{''}</Link>
-        </Navigation>
-      </AppBar>
+      <div>
+        <Container>
+          <Col sm={12} >
+            <AppBar title="Quaaaid" leftIcon="M" theme={theme} rightIcon={<GithubIcon />}>
+              <Navigation type="horizontal">
+                <Link href="http://" label="Inbox" icon="I" >{''}</Link>
+                <Link href="http://" active label="Profile" icon="P" >{''}</Link>
+              </Navigation>
+            </AppBar>
+            <Card >
+              <CardTitle title="test card" />
+            </Card>
+          </Col>
+        </Container>
+      </div>
     );
     return (
       <div>
